@@ -1,0 +1,14 @@
+%div
+  %h2= t 'report.which_articles_people_are_reading'
+  #articles
+    %table  
+      %thead
+        %tr
+          %th.first_short= I18n.t 'report.article'
+          %th.second_short
+          %th= I18n.t 'report.views'
+      %tbody
+    .loading
+      = render 'loading_indicator'
+    .more
+      = render 'more'

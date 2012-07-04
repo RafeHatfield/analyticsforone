@@ -1,0 +1,13 @@
+%div
+  %h2= t 'report.which_useful_articles'
+  #article_votes
+    %table  
+      %thead
+        %tr
+          %th.first= I18n.t 'report.article'
+          %th= I18n.t 'report.helpful'
+      %tbody
+    .loading
+      = render 'loading_indicator'
+    .more
+      = render 'more'

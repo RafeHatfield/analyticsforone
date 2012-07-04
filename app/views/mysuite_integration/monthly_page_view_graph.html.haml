@@ -1,0 +1,82 @@
+= javascript_include_tag 'jquery', 'highcharts', 'application.js'
+
+- plot_height = params[:size]=='small' ? 175 : 500
+- legend_enabled = params[:size]=='small' ? false : true
+- xlabel = params[:size]=='small' ? "" : "%e"
+- left_margin = params[:size]=='small' ? 0 : 40
+
+:javascript
+  $(function(){
+    
+    localize_highcharts("#{I18n.locale}");
+    
+    // Make the 'page_view_plot' div a highchart showing the total view counts.
+    var chart;
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'page_view_plot',
+        defaultSeriesType: 'column',
+        height: "#{plot_height}",
+        marginLeft: #{left_margin},
+        marginRight: 0
+      },
+      credits: {
+        enabled: false
+      },
+      title: false,
+      legend: {
+        enabled: #{legend_enabled}
+      },
+      xAxis: [{
+        type: 'datetime',
+        tickInterval: #{1.day * 1000},
+        tickPosition: "inside",
+        labels: {
+          formatter: function() {
+            return Highcharts.dateFormat("#{xlabel}", this.value);
+          }
+        }
+      },
+      {
+        type: 'datetime',
+        tickInterval: #{1.day * 1000},
+        tickPosition: "inside",
+        labels: {
+          formatter: function() {
+            return Highcharts.dateFormat("", this.value);
+          }
+        },
+        offset: -1
+      }],
+      yAxis: {
+        title: false,
+        min: 0
+      },
+      tooltip: {
+        formatter: function() {
+          return Highcharts.dateFormat("%B %e %Y", this.x) + ': ' + this.y;
+        }
+      },
+      series: [
+      {
+        name: "#{t('report.last_month')}",
+        pointInterval: #{1.day * 1000},
+        pointStart: #{@last_start_date.at_midnight.to_i * 1000},
+        data: #{@view_counts_last_month.to_json},
+        xAxis: 1
+      },
+      {
+        name: "#{t('report.this_month')}",
+        pointInterval: #{1.day * 1000},
+        pointStart: #{@this_start_date.at_midnight.to_i * 1000},
+        data: #{@view_counts_this_month.to_json},
+        type: 'line',
+        xAxis: 0
+      }
+      ]
+      
+    });
+
+  });
+
+#page_view_plot

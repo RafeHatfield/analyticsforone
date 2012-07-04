@@ -1,0 +1,82 @@
+%p.utility_bar
+  = link_to t('report.download_csv'), article_view_csv_path(@user[:key]), :class => "csv"
+%h1= t 'report.showing_all_articles'
+
+%date
+  =form_tag dashboard_path(@user[:key]), :method => :get do
+    == #{t('report.from')} #{text_field_tag(:start_date, I18n.l(@start_date), {:id => "start_date"})}
+    == #{t('report.to')}  #{text_field_tag(:end_date, I18n.l(@end_date), {:id => "end_date"})}
+    = submit_tag t 'report.update'
+%br
+%hr
+
+%h2= t 'report.readers_viewing'
+#page_views_loading
+  = render 'loading_indicator'
+#page_view_plot
+
+%h2.summary=raw t 'report.your_articles_viewed_times', :times => "<span id='total_views'>...</span>"
+  
+#sources_loading
+  = render 'loading_indicator'
+#source_chart
+
+= render 'articles_table'
+  
+= render 'keyphrases_table', :title => t('report.how_people_finding_me') 
+
+= render 'domains_table', :title => t('report.where_readers_from') 
+
+= render 'articles_votes'
+
+- content_for :page_javascript do
+  :javascript
+    $(function(){ 
+      
+      localize_highcharts("#{I18n.locale}");
+      
+      // Render page views
+      $.getJSON("#{writer_page_views_url(@user[:key], @user[:id])}", {}, function(data){
+        $("#page_views_loading").hide();
+        $('#page_view_plot').page_view_plot(data, #{@start_date.at_midnight.to_i * 1000});
+        // Update the total page views.
+        var total_views = 0;
+        for(var i in data){ total_views += data[i]; }
+        $('#total_views').text(total_views);
+      });
+      
+      // Render sources
+      $.getJSON("#{writer_sources_url(@user[:key], @user[:id])}", {}, function(data){
+        $("#sources_loading").hide();
+        $('#source_chart').source_chart(data);
+      });
+      
+      // Render article counts
+      $("#articles").paginated_table("#{writer_articles_url(@user[:key], @user[:id])}", 50, #{session[:articles_length]});
+      
+      // Render article votes counts
+      $("#article_votes").paginated_table("#{writer_votes_url(@user[:key], @user[:id])}", 10, #{session[:votes_length]});
+      
+      // Render the domain counts
+      $("#domains").paginated_table("#{writer_domains_url(@user[:key], @user[:id])}", 10, #{session[:domains_length]});
+      
+      // Render the keyphrase counts
+      $("#keyphrases").paginated_table("#{writer_keyphrases_url(@user[:key], @user[:id])}", 10, #{session[:keyphrases_length]});
+      
+      var dates = $( "#start_date, #end_date" ).datepicker({
+        numberOfMonths: 1,
+        minDate: new Date(2011, 1-1, 1),
+        onSelect: function( selectedDate ) {
+          var option = this.id == "start_date" ? "minDate" : "maxDate",
+          instance = $( this ).data( "datepicker" ),
+          date = $.datepicker.parseDate(
+          instance.settings.dateFormat ||
+          $.datepicker._defaults.dateFormat,
+          selectedDate, instance.settings );
+          dates.not( this ).datepicker( "option", option, date );
+        }
+      });
+      $.datepicker.setDefaults($.datepicker.regional["#{I18n.locale.to_s}"]);
+      
+    });
+  

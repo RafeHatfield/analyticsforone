@@ -1,0 +1,23 @@
+--- 
+report: 
+  how_people_finding_article: How Are People Finding "%{title}"?
+  article: Article
+  this_article_viewed_times: This article was viewed %{times} times.
+  view_all_articles: View All Articles
+  showing_all_articles: Showing all articles
+  stats_for_article: Stats for "%{title}"
+  your_articles_viewed_times: Your articles were viewed %{times} times in total.
+  generating_data: Generating your data.
+  from: from
+  how_people_finding_me: How Are People Finding Me?
+  where_people_from: Where Are People Coming From?
+  people_viewing_article: People Viewing This Article
+  domains: Domains
+  to: to
+  views: Views
+  where_readers_from: Where Are My Readers Coming From?
+  which_articles_people_are_reading: Which of My Articles People Are Reading?
+  mysuite_link: Back to MySuite
+  readers_viewing: Readers Viewing My Articles
+  load_more: Load More
+  download_csv: Download Yesterday's Data

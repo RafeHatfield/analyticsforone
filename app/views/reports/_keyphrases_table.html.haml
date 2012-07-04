@@ -1,0 +1,13 @@
+%div
+  %h2= title
+  #keyphrases
+    %table
+      %thead
+        %tr
+          %th.first= t('report.keyphrases')
+          %th= t('report.views')
+      %tbody
+    .loading
+      = render 'loading_indicator'
+    .more
+      = render 'more'

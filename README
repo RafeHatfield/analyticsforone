@@ -1,0 +1,90 @@
+DEVELOPMENT SETUP
+
+0) bundle install
+
+1) Create development / test databases:
+> rake db:create:all
+
+2) Create dev partition tables:
+> rake writer_partition:create column=page
+> rake writer_partition:create column=domain 
+> rake writer_partition:create column=keyphrase
+
+2b) Create other tables:
+> rake db:migrate
+
+3) Create test data (need to start memcached on your machine first):
+> memcached
+> rake dev_seeds:fill
+> (kill memcached if you want)
+
+4) Test the dashboards for writer 1
+> rails s --debug
+	Visit: localhost:3000/test/1
+	
+DEVELOPMENT SETUP WITH TRACKING SYSTEM
+
+1) Do the above steps
+
+2) Start memcached:
+> memcached
+
+3) Start the redis server 
+Make sure redis is installed and redis-server is in your path
+> redis-server
+
+4) Create a resque worker: 
+> QUEUE=* rake resque:work
+
+[
+		To create a rescue worker with debug messages:
+		> VVERBOSE=1 QUEUE=* rake resque:work
+
+	 	To create multiple rescue workers:
+	 	> COUNT=5 QUEUE=* rake resque:workers
+		
+ 		Monitor rescue, visit: http://localhost:3000/resque - doh!
+]
+
+DEVELOPMENT WITH INTERNATIONAL
+
+In development, we are not sharding the databases due to problems with testing. Instead, all language stats go into the same database on development! This is good news for you, in a sense, because the dev seeds that you created before will appear for writer 1 on net, de, and fr. Unfortunately, it's not good news if you want to test adding page views from languages and see these go into different databases, or other language database specific stuff.
+
+To view international stats in development, set up your /private/etc/hosts with the following hosts:
+
+127.0.0.1  stats.dev.suite101.com
+127.0.0.1  stats.dev.suite101.de
+127.0.0.1  stats.dev.suite101.fr
+127.0.0.1  stats.dev.suite101.net
+
+and visit, e.g., stats.dev.suite101.net:3000/test/1 .
+
+
+
+DEPLOYMENT / MANAGING SERVERS
+
+Add server hosts to your ~/.ssh/config file as in 'doc/ssh_hosts.txt'
+
+ssh into production machine:
+	> ssh stats1
+	> ssh stats2
+	> ssh stats-db
+	> ssh stats-db-slave
+
+ssh into staging machine:
+  > ssh stats-staging
+	
+access live app:
+	> cd /data/suite101/current
+	> rails c production
+	> rails db production (pass: 632bVy6Le3h9f, see deploy.rb)
+
+deploy:
+	> cap staging deploy
+	> cap production deploy
+	
+run migrations on production:
+  > cap production deploy:migrate
+	
+
+

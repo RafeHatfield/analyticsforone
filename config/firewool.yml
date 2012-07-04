@@ -1,0 +1,11 @@
+development:
+  ip_restriction: true
+  allow: [ 127.0.0.1 ]
+test:
+  ip_restriction: false
+staging:
+  ip_restriction: false
+  # allow: [ 69.90.98.80/28 ] # allows for 69.90.98.81-94
+production:
+  ip_restriction: false
+  # allow: [ 69.90.98.80/28 ] # allows for 69.90.98.81-94

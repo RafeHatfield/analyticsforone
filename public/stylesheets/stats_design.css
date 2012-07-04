@@ -1,0 +1,128 @@
+/* Layout */
+body {
+	background-color: #EEE;
+}
+div.header {
+	background: url("http://graphics.suite101.com/blog_bg_header.jpg") repeat-x scroll left bottom #FFFFFF;
+	border: 1px solid #000000;
+	height: 100px;
+}
+div.header img{
+	display: block;
+}
+div.header a#mysuite{
+	display: block; 
+	margin-top: -35px
+}
+div.footer {
+	background-color: #eee;
+	height: 20px;
+}
+div.content {
+	width: 800px;
+	margin: 0 auto;
+	padding: 15px;
+	background-color: #FFF;
+}
+date {
+	color: #466F73;
+	font-size: 120%;
+}
+date input[type="text"]{
+	margin: 3px;
+	padding: 3px 2px;
+	width: 100px;
+	border:#cbcbcb solid 1px;
+}
+date input[type="submit"] {
+	font-size: 14px;
+}
+h1 {
+	color: #466F73;
+	font-size: 140%;
+	margin: 15px 0 8px;
+	padding-bottom: 5px;
+	width: 900px;
+}
+h2 {
+	color: #666666;
+	font-size: 120%;
+	margin: 15px 0 8px;
+	padding-bottom: 5px;
+	width: 750px;
+}
+h2.summary {
+	background:#a0a620;
+	width:700px;
+	margin: 10px;
+	margin-left: 20px;
+	padding: 20px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	color: #fff;
+	font-size:20px;
+	font-weight:bold;
+	text-align:center;
+}
+table {
+	width: 700px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+div.data_loading {
+	text-align: center;
+}
+.more {
+	text-align: center;
+}
+div.data_loading img{
+}
+div.data_loading h4{
+}
+th.first{
+	width: 600px;
+}
+th.first_short{
+	width: 400px;
+}
+th.second_short{
+	width: 190px;
+}
+tfoot td{
+	border-bottom: 0;
+}
+p.utility_bar {
+	float:right; 
+	margin-top:18px;
+}
+p a{
+	margin-bottom: 15px;
+	display: block;
+}
+a.csv {
+	background: url('../images/table-images/download.png') right bottom no-repeat;
+	padding-right:32px;
+	line-height:20px;
+}
+a.csv:active {
+	background: url('../images/table-images/download.png') right bottom no-repeat;
+	padding-right:32px;
+}
+
+#page_view_plot{
+	margin-left: 60px;
+	width: 750px; 
+	height: 400px;
+}
+
+#source_chart{
+	height: 400px;
+	width: 650px;
+	margin-left: 60px;
+}
+
+/* Shrink the jquery-ui datepicker font size. */
+div.ui-datepicker{
+	font-size:11px;
+}

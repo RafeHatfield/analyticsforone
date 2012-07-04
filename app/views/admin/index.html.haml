@@ -1,0 +1,14 @@
+%h1 Raw Page Views
+%table
+  %tr
+    %th id
+    %th visited_at
+    %th tracked_page_id
+    %th page_title
+    %th page_url
+    %th referrer_url
+    %th writer_id
+    %th cookie_id
+    
+  = render :partial => "raw_page_view", :collection => @raw_page_views
+	

@@ -1,0 +1,34 @@
+# xCloud stats app1  
+Host stats1  
+Hostname 209.251.186.100  
+Port 7003  
+HostKeyAlias tm23-s00160  
+User suite101  
+
+# xCloud stats app2  
+Host stats2  
+Hostname 209.251.186.100  
+Port 7004  
+HostKeyAlias tm23-s00161  
+User suite101  
+
+# xCloud stats staging (app and db)
+Host stats-staging   
+Hostname 209.251.186.100  
+Port 7000  
+HostKeyAlias tm23-s00155  
+User suite101  
+
+# xCloud stats production db (master)  
+Host stats-db  
+Hostname 209.251.186.100  
+Port 7001  
+HostKeyAlias tm23-s00156  
+User suite101  
+
+# xCloud stats production db (slave)  
+Host stats-db-slave    
+Hostname 209.251.186.100  
+Port 7002  
+HostKeyAlias tm23-s00157  
+User suite101

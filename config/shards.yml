@@ -1,0 +1,67 @@
+postgres_development: &postgres_development
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: suite101
+  host: localhost
+  port: 5432
+  
+postgres_staging: &postgres_staging
+  adapter: postgresql
+  username: suite101_db
+  password: 632bVy6Le3h9f
+  encoding: unicode
+  host: suite101-psql-staging-master
+#  port: 5432
+
+postgres_production: &postgres_production
+  adapter: postgresql
+  username: suite101_db
+  password: 632bVy6Le3h9f
+  encoding: unicode
+  host: suite101-psql-production-master
+
+octopus:
+  environments:
+    - development
+    - staging
+    - production
+  development:
+    com:
+      database: stats_com_dev
+      <<: *postgres_development
+    de:
+      database: stats_de_dev
+      <<: *postgres_development
+    net:
+      database: stats_net_dev
+      <<: *postgres_development
+    fr:
+      database: stats_fr_dev
+      <<: *postgres_development
+  staging:
+    com:
+      database: stats_com_staging
+      <<: *postgres_staging
+    de:
+      database: stats_de_staging
+      <<: *postgres_staging
+    net:
+      database: stats_net_staging
+      <<: *postgres_staging
+    fr:
+      database: stats_fr_staging
+      <<: *postgres_staging
+  production:
+    com:
+      database: stats_com_production
+      <<: *postgres_production
+    de:
+      database: stats_de_production
+      <<: *postgres_production
+    net:
+      database: stats_net_production
+      <<: *postgres_production
+    fr:
+      database: stats_fr_production
+      <<: *postgres_production

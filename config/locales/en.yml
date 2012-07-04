@@ -1,0 +1,41 @@
+en:
+  report:
+    mysuite_link: Back to MySuite
+    download_csv: Download Data
+    showing_all_articles: Showing all articles
+    from: from
+    to: to
+    update: Update
+    readers_viewing: Readers Viewing My Articles
+    which_articles_people_are_reading: Which of My Articles People Are Reading?
+    how_people_finding_me: How Are People Finding Me?
+    where_readers_from: Where Are My Readers Coming From?
+    view_all_articles: View All Articles
+    internal: Suite101
+    other: Other
+    organic: Search Engines
+    article: Article
+    views: Views
+    view: View
+    details: Details
+    domains: Domains
+    load_more: Load More
+    generating_data:  Generating your data.
+    people_viewing_article: People Viewing This Article
+    where_people_from: Where Are People Coming From?
+    your_articles_viewed_times: Your articles were viewed %{times} times in total.
+    stats_for_article:  Stats for "%{title}"
+    this_article_viewed_times: This article was viewed %{times} times.
+    how_people_finding_article: How Are People Finding "%{title}"?
+    keyphrases: Keyphrases
+    helpful: Helpful
+    which_useful_articles: Which of My Articles Do People Find Useful?
+    helpfulness_for_article: How helpful do people find "%{title}"?
+    not_helpful: Not Helpful
+    vote_responses: Specific Responses for "%{title}"
+    responses: Responses
+    this_month: This Month
+    last_month: Last Month
+    this_week: This week
+    last_week: Last week
+    suite101_article_stats: suite101_article_stats

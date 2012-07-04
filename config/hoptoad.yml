@@ -1,0 +1,4 @@
+staging:
+  api_key: '06b8c4d9186cdbdc5cc87a6cb9f256ba'
+production:
+  api_key: '4852aea247fe2ad565386d9e806563cd'

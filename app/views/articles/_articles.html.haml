@@ -1,0 +1,6 @@
+- article_counts.each do |ac|
+  - if ac.count != 0
+    %tr
+      %td= display_article_title(ac.title)
+      %td== #{link_to I18n.t('report.details'), article_dashboard_url(@user[:key], ac.article_id)} / #{link_to I18n.t('report.view'), ac.permalink}
+      %td= ac.count

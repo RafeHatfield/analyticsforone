@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stats</title>
+  <%= stylesheet_link_tag :all %>
+  <meta name="robots" content="noindex,nofollow,noodp,noydir">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
+  <%= csrf_meta_tag %>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/redmond/jquery-ui.css">
+  <link rel="stylesheet" href="/flutie/stylesheets/flutie.css">
+  <link rel="stylesheet" href="/stylesheets/stats_design.css">
+</head>
+<body>
+
+  <div class="header" align="center">  
+      <img src="http://graphics.suite101.com/stats_logo.png">
+      <a id="mysuite" href="http://my.<%= request.domain %>"><%= I18n.t 'report.mysuite_link'%></a>
+  </div>
+  <div class="content">
+    <%= yield %>
+  </div>
+  <div class="footer">
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js" type="text/javascript"></script>
+  <%= javascript_include_tag 'application', 'rails', 'highcharts', 'jquery-ui-datepicker-locales', 'jquery.highcharts.source-chart', 'jquery.highcharts.page-view-plot' %>
+  <%= javascript_include_tag 'jquery.paginated-table' %>
+  <%= yield :page_javascript %>
+</body>
+</html>

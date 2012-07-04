@@ -1,0 +1,4 @@
+- @votes.each do |v|
+  %tr
+    %td= display_article_title(v[:title])
+    %td= display_votes(v[:helpful], v[:not_helpful])
